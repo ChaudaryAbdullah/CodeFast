@@ -1,34 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
+import Layout from "./Layouts/Layout"
+import Login from "./Components/Shared/Login"
+import Signup from "./Components/Shared/Signup"
+import Settings from "./Components/Shared/Settings"
+import GlobalProvider from "./Components/Auth/GlobalProvider"
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { AuthGuard } from "./Utils/authGuard"
+import StudentLayout from "./Layouts/StudentLayout"
+import AdminLayout from "./Layouts/AdminLayout"
+import IndustryLayout from "./Layouts/IndustryLayout"
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <main className="min-h-screen">
+      <GlobalProvider>
+        <ToastContainer />
+        <Router>
+          <AuthGuard />
+          <Layout>
+            <Routes>
+              <Route path='/student/*' element={<StudentLayout />} />    
+              <Route path='/admin/*' element={<AdminLayout />} />
+              <Route path='/industry/*' element={<IndustryLayout />} />    
+              <Route path='/login' element={<Login />} />    
+              <Route path='/signup' element={<Signup />} />    
+              <Route path='/settings' element={<Settings />} />
+            </Routes>
+          </Layout>
+        </Router>
+      </GlobalProvider>
+    </main>
   )
 }
 
