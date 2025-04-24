@@ -12,6 +12,8 @@ interface IStudent {
     cgpa: number
     courses: string[]
 }
+
+
 const StudentLeaderboard = () => {
   const [internships, setInternships] = useState([])
   const [students, setStudents] = useState<IStudent[]>([])

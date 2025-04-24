@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 
 const DEFAULT_COLORS = ['#FF8042', '#0088FE', '#00C49F', '#008080', '#FFBB28'];
@@ -12,7 +12,7 @@ const getRandomColor = () => {
   return color;
 };
 
-const DynamicPieChart = ({ data }: {data: any}) => {
+const DynamicPieChart = ({ data }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   // Adjust the window width on resize
@@ -55,7 +55,7 @@ const DynamicPieChart = ({ data }: {data: any}) => {
             cy="50%"
             outerRadius={outerRadius}
           >
-            {data.map((_: any, index: any) => (
+            {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
             ))}
           </Pie>
@@ -64,7 +64,7 @@ const DynamicPieChart = ({ data }: {data: any}) => {
       </ResponsiveContainer>
 
       <div style={{ paddingLeft: '0px', marginTop: windowWidth < 1024 ? '20px' : '0', display: 'flex', flexDirection: 'column' }}>
-        {data.map((entry:any, index: any) => (
+        {data.map((entry, index) => (
           <div
             key={index}
             style={{
