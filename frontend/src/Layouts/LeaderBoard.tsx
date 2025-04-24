@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import TopBar from "..//Components/Shared/Topbar";
-import axiosInstance from "../../Utils/axiosInstance";
+import axiosInstance from "../Utils/axiosInstance";
 
 interface IStudent {
   _id: number;
