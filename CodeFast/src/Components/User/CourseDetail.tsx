@@ -47,6 +47,7 @@ const CourseDetail: React.FC<CourseDetailProps> = ({ course, onBackClick, onUnen
     setSelectedMaterial(null)
   }
 
+  
 
   // If a specific quiz is selected
   if (selectedQuiz) {
